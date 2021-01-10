@@ -3,6 +3,7 @@ import vtk
 import vtkmodules.qt
 vtkmodules.qt.QVTKRWIBase = "QGLWidget"
 from vtk.qt.QVTKRenderWindowInteractor import QVTKRenderWindowInteractor
+import FpsObserver
 
 
 # VtkWindow must be derived from QFrame: https://vtk.org/Wiki/VTK/Examples/Python/Widgets/EmbedPyQt
@@ -26,6 +27,7 @@ class VtkWindow(QtWidgets.QFrame):
 		self.mRenderer = vtk.vtkRenderer()
 		self.setBackgroundColor([0.5, 0.5, 0.5])
 		self.mRenderWindow.AddRenderer(self.mRenderer)
+		self.mFpsObserver = FpsObserver.FpsObserver(self.mRenderer)
 		
 		
 		# Set the Vtk Window title.
@@ -41,6 +43,8 @@ class VtkWindow(QtWidgets.QFrame):
 		width  = int( (self.width() - textSize[0]) / 2.0)
 		height = self.height() - textSize[1]
 		self.mTitleActor.SetPosition(width, height - 10)
+		
+		self.mFpsObserver.setPosition(10, height - 10)
 		
 	
 	def setBackgroundColor(self, color):
