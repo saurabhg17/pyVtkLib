@@ -32,7 +32,7 @@ class VtkWindow(QtWidgets.QFrame):
 		
 		# Set the Vtk Window title.
 		self.mTitleActor = None
-		self.setTitle("pyVtkStarter")
+		self.setTitle("pyVtkLib Demo")
 		
 		
 	# Called when QFrame is resized.
